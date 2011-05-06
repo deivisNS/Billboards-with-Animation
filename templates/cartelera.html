@@ -1,0 +1,50 @@
+<!-- cargamos la base del html -->
+{% extends "base.html" %}
+
+
+<!-- cambiamos el titulo de la pagina -->
+{% block title %}
+	Carteleras
+{% endblock %}
+
+
+<!-- cambiamos el contenido de la pagina -->
+{% block content %}
+	
+	<!-- preguntamos si la variable que pasamos por el contexto, tiene algun contenido -->
+	{% if pictures|length == 3 %}
+
+		<section>
+			<div class="title">
+				<h1>Carteles</h1>
+			</div>
+
+			<div class="content">
+				<div class="carteles">
+
+					<!-- recorremos la lista con lasrutas de la imagenes -->
+					{% for image in pictures %}
+						
+						<!-- cargamos las imagenes en el html -->
+						<div>
+							<img src="{{ url_for('static', filename = image) }}" width="100%">
+						</div>
+						
+					<!-- cerramos el bucle for -->
+					{% endfor %}
+					
+				</div>
+			</div>
+		</section>
+
+	<!-- si la lista no tiene el contenido indicado -->
+	{% else %}
+
+		<div class="error">
+			<h2>No se pudieron Cargar las Imagenes :`(</h2>
+		</div>
+
+	<!-- cerramos el condicional if -->
+	{% endif %}
+
+{% endblock %}
